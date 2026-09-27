@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lumière Salon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#241419;
+    --ivory:#FAF6F1;
+    --wine:#7A2E3B;
+    --gold:#B8935A;
+    --line: rgba(36,20,25,0.14);
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Manrope', -apple-system, sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--ivory);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a{ color: inherit; }
+  .wrap{ max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  img{ max-width:100%; display:block; }
+
+  /* ---------- Nav ---------- */
+  .nav{
+    position: sticky; top:0; z-index: 20;
+    background: rgba(250,246,241,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height: 76px;
+  }
+  .brand{
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+  .nav-links{ display:flex; gap: 32px; list-style:none; }
+  .nav-links a{
+    font-size: 0.95rem;
+    text-decoration:none;
+    padding-bottom: 4px;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+  }
+  .nav-links a:hover{ border-color: var(--wine); }
+  .nav-cta{
+    background: var(--wine); color: var(--ivory);
+    padding: 10px 22px; border-radius: 2px;
+    text-decoration:none; font-size:0.9rem; font-weight:600;
+    white-space: nowrap;
+  }
+  @media (max-width: 720px){ .nav-links{ display:none; } }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding: 88px 0 72px;
+    display:grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 56px;
+    align-items:center;
+  }
+  .hero h1{
+    font-family: var(--serif);
+    font-size: clamp(2.6rem, 5vw, 4rem);
+    font-weight: 500;
+    line-height: 1.08;
+    max-width: 11ch;
+  }
+  .hero p{
+    margin-top: 22px;
+    font-size: 1.1rem;
+    max-width: 42ch;
+    color: rgba(36,20,25,0.78);
+  }
+  .hero-ctas{ margin-top: 34px; display:flex; gap:16px; flex-wrap:wrap; }
+  .btn-primary{
+    background: var(--ink); color: var(--ivory);
+    padding: 14px 28px; border-radius:2px;
+    text-decoration:none; font-weight:600; font-size:0.95rem;
+    border: 1px solid var(--ink);
+  }
+  .btn-secondary{
+    padding: 14px 28px; border-radius:2px;
+    text-decoration:none; font-weight:600; font-size:0.95rem;
+    border: 1px solid var(--ink); color: var(--ink);
+  }
+  .hero-art{
+    aspect-ratio: 4/5;
+    border: 1px solid var(--line);
+    position:relative;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .hero-art svg{ width:70%; height:70%; }
+  @media (max-width: 860px){
+    .hero{ grid-template-columns: 1fr; padding-top: 56px; }
+    .hero-art{ order:-1; max-width: 320px; margin: 0 auto; }
+  }
+
+  /* ---------- Section shell ---------- */
+  section{ padding: 96px 0; }
+  .section-head{ margin-bottom: 48px; }
+  .kicker{
+    font-size: 0.85rem;
+    color: var(--wine);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  h2{
+    font-family: var(--serif);
+    font-size: clamp(1.9rem, 3vw, 2.6rem);
+    font-weight: 500;
+  }
+
+  /* ---------- Services (categorized lists) ---------- */
+  .service-groups{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 64px;
+  }
+  .service-group{
+    border-top: 1px solid var(--line);
+    padding: 32px 0;
+  }
+  .service-group h3{
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--wine);
+    margin-bottom: 8px;
+  }
+  .service-row{
+    display:grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 16px;
+    align-items: baseline;
+    padding: 12px 0;
+    border-bottom: 1px dotted var(--line);
+  }
+  .service-group .service-row:last-child{ border-bottom:none; }
+  .service-row .name{ font-size: 0.98rem; }
+  .service-row .time{ font-size: 0.85rem; color: rgba(36,20,25,0.55); white-space:nowrap; }
+  .service-row .price{ font-family: var(--serif); font-size: 1.05rem; color: var(--wine); white-space:nowrap; }
+  .services-note{
+    margin-top: 40px;
+    font-size: 0.92rem;
+    color: rgba(36,20,25,0.62);
+    border-top: 1px solid var(--line);
+    padding-top: 24px;
+  }
+  @media (max-width: 800px){
+    .service-groups{ grid-template-columns: 1fr; gap:0; }
+  }
+  @media (max-width: 480px){
+    .service-row{ grid-template-columns: 1fr auto; }
+    .service-row .time{ grid-column: 1/2; }
+  }
+
+  /* ---------- About / stats ---------- */
+  .about{ background: var(--ink); color: var(--ivory); }
+  .about .wrap{
+    display:grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items:center;
+  }
+  .about h2{ color: var(--ivory); }
+  .about p{ margin-top: 18px; color: rgba(250,246,241,0.78); max-width: 46ch; }
+  .stats{ display:flex; gap: 40px; margin-top: 32px; }
+  .stat b{ font-family: var(--serif); font-size: 2rem; display:block; color: var(--gold); }
+  .stat span{ font-size: 0.85rem; color: rgba(250,246,241,0.65); }
+  @media (max-width: 800px){ .about .wrap{ grid-template-columns: 1fr; } }
+
+  /* ---------- Testimonials ---------- */
+  .quotes{ display:grid; grid-template-columns: repeat(3,1fr); gap: 40px; }
+  .quote{ border-top: 2px solid var(--gold); padding-top: 20px; }
+  .quote p{ font-family: var(--serif); font-size: 1.15rem; line-height:1.5; }
+  .quote cite{ display:block; margin-top: 16px; font-style:normal; font-size:0.85rem; color: rgba(36,20,25,0.6); }
+  @media (max-width: 860px){ .quotes{ grid-template-columns: 1fr; } }
+
+  /* ---------- Booking form ---------- */
+  .booking{ background: #F1E9DE; }
+  .booking .wrap{ display:grid; grid-template-columns: 0.9fr 1.1fr; gap: 56px; }
+  .booking h2{ max-width: 12ch; }
+  .booking p{ margin-top: 16px; color: rgba(36,20,25,0.72); max-width: 38ch; }
+  form{ display:grid; gap: 18px; }
+  .form-row{ display:grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  label{ display:block; font-size: 0.82rem; font-weight:600; margin-bottom: 6px; }
+  input, select, textarea{
+    width:100%; padding: 12px 14px; font-family: var(--sans); font-size: 0.95rem;
+    border: 1px solid var(--line); background: var(--ivory); border-radius: 2px;
+  }
+  input:focus, select:focus, textarea:focus{ outline: 2px solid var(--wine); outline-offset: 1px; }
+  .submit-btn{
+    justify-self: start;
+    background: var(--wine); color: var(--ivory);
+    border:none; padding: 14px 30px; font-weight:700; font-size: 0.95rem;
+    border-radius: 2px; cursor:pointer;
+  }
+  .submit-btn:hover{ background:#622430; }
+  .form-note{ font-size: 0.82rem; color: rgba(36,20,25,0.6); }
+  @media (max-width: 860px){ .booking .wrap{ grid-template-columns: 1fr; } .form-row{ grid-template-columns: 1fr; } }
+
+  /* ---------- Footer ---------- */
+  footer{ padding: 48px 0; border-top: 1px solid var(--line); }
+  footer .wrap{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
+  }
+  footer .cols{ display:flex; gap: 40px; font-size: 0.9rem; }
+  footer .cols div{ color: rgba(36,20,25,0.7); }
+  .fine{ font-size: 0.8rem; color: rgba(36,20,25,0.5); margin-top: 24px; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="brand">Lumière</div>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#book">Contact</a></li>
+    </ul>
+    <a class="nav-cta" href="#book">Book a chair</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap" style="display:grid; grid-template-columns: 1.15fr 0.85fr; gap:56px; align-items:center;">
+    <div>
+      <h1>Hair, beauty, and everything in between.</h1>
+      <p>From braids and locs to nails, lashes, facials, and bridal glam — one salon, booked around your time, not a rushed slot.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="#book">Book an appointment</a>
+        <a class="btn-secondary" href="#services">See all services</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <svg viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M100 10C60 10 40 45 40 80c0 20 8 35 8 55 0 30-20 40-20 60 0 10 8 15 20 15 15 0 20-10 20-25 0-10-5-20-5-35 0-20 15-30 37-30s37 10 37 30c0 15-5 25-5 35 0 15 5 25 20 25 12 0 20-5 20-15 0-20-20-30-20-60 0-20 8-35 8-55 0-35-20-70-60-70Z" stroke="#241419" stroke-width="1.4"/>
+        <circle cx="78" cy="70" r="4" fill="#7A2E3B"/>
+        <circle cx="122" cy="70" r="4" fill="#7A2E3B"/>
+        <path d="M70 100c10 8 50 8 60 0" stroke="#B8935A" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Services</div>
+      <h2>Everything, under one roof.</h2>
+    </div>
+    <div class="service-groups">
+      <div class="service-group">
+        <h3>Hair Services</h3>
+        <div class="service-row"><div class="name">Knotless Braids</div><div class="time">4 hr</div><div class="price">R180</div></div>
+        <div class="service-row"><div class="name">Box Braids</div><div class="time">3.5 hr</div><div class="price">R150</div></div>
+        <div class="service-row"><div class="name">Cornrows</div><div class="time">1.5 hr</div><div class="price">R65</div></div>
+        <div class="service-row"><div class="name">Tribal Braids</div><div class="time">4.5 hr</div><div class="price">R190</div></div>
+        <div class="service-row"><div class="name">Fulani Braids</div><div class="time">4 hr</div><div class="price">R170</div></div>
+        <div class="service-row"><div class="name">Passion Twists</div><div class="time">3.5 hr</div><div class="price">R160</div></div>
+        <div class="service-row"><div class="name">Faux Locs</div><div class="time">5 hr</div><div class="price">R200</div></div>
+        <div class="service-row"><div class="name">Soft Locs</div><div class="time">5 hr</div><div class="price">R210</div></div>
+        <div class="service-row"><div class="name">Crochet Braids</div><div class="time">2.5 hr</div><div class="price">R130</div></div>
+        <div class="service-row"><div class="name">Wig Installation</div><div class="time">1.5 hr</div><div class="price">R80</div></div>
+        <div class="service-row"><div class="name">Wig Customisation</div><div class="time">1 hr</div><div class="price">R60</div></div>
+        <div class="service-row"><div class="name">Weaves &amp; Sew-Ins</div><div class="time">3 hr</div><div class="price">R150</div></div>
+        <div class="service-row"><div class="name">Natural Hair Styling</div><div class="time">1 hr</div><div class="price">R55</div></div>
+        <div class="service-row"><div class="name">Hair Treatment</div><div class="time">45 min</div><div class="price">R45</div></div>
+        <div class="service-row"><div class="name">Blow-Dry &amp; Styling</div><div class="time">40 min</div><div class="price">R45</div></div>
+      </div>
+      <div class="service-group">
+        <h3>Beauty Services</h3>
+        <div class="service-row"><div class="name">Manicure</div><div class="time">30 min</div><div class="price">R30</div></div>
+        <div class="service-row"><div class="name">Gel Manicure</div><div class="time">45 min</div><div class="price">R45</div></div>
+        <div class="service-row"><div class="name">Pedicure</div><div class="time">45 min</div><div class="price">R40</div></div>
+        <div class="service-row"><div class="name">Gel Pedicure</div><div class="time">1 hr</div><div class="price">R55</div></div>
+        <div class="service-row"><div class="name">Acrylic Nails</div><div class="time">1 hr</div><div class="price">R60</div></div>
+        <div class="service-row"><div class="name">Nail Art</div><div class="time">20 min</div><div class="price">R15+</div></div>
+        <div class="service-row"><div class="name">Eyelash Extensions</div><div class="time">1.5 hr</div><div class="price">R90</div></div>
+        <div class="service-row"><div class="name">Lash Refills</div><div class="time">45 min</div><div class="price">R50</div></div>
+        <div class="service-row"><div class="name">Eyebrow Shaping</div><div class="time">20 min</div><div class="price">R20</div></div>
+        <div class="service-row"><div class="name">Eyebrow Tinting</div><div class="time">15 min</div><div class="price">R15</div></div>
+      </div>
+      <div class="service-group">
+        <h3>Spa &amp; Beauty</h3>
+        <div class="service-row"><div class="name">Facial</div><div class="time">1 hr</div><div class="price">R70</div></div>
+        <div class="service-row"><div class="name">Deep Cleansing Facial</div><div class="time">1.25 hr</div><div class="price">R85</div></div>
+        <div class="service-row"><div class="name">Full-Body Massage</div><div class="time">1.5 hr</div><div class="price">R110</div></div>
+        <div class="service-row"><div class="name">Back &amp; Shoulder Massage</div><div class="time">45 min</div><div class="price">R60</div></div>
+        <div class="service-row"><div class="name">Relaxation Massage</div><div class="time">1 hr</div><div class="price">R90</div></div>
+        <div class="service-row"><div class="name">Waxing</div><div class="time">20 min</div><div class="price">R25+</div></div>
+        <div class="service-row"><div class="name">Body Scrub</div><div class="time">45 min</div><div class="price">R65</div></div>
+      </div>
+      <div class="service-group">
+        <h3>Special Occasion</h3>
+        <div class="service-row"><div class="name">Bridal Hair</div><div class="time">2 hr</div><div class="price">R100</div></div>
+        <div class="service-row"><div class="name">Bridal Makeup</div><div class="time">1.5 hr</div><div class="price">R150</div></div>
+        <div class="service-row"><div class="name">Bridesmaid Styling</div><div class="time">1 hr</div><div class="price">R90</div></div>
+        <div class="service-row"><div class="name">Birthday / Event Glam</div><div class="time">1.5 hr</div><div class="price">R100</div></div>
+        <div class="service-row"><div class="name">Photoshoot Styling</div><div class="time">2 hr</div><div class="price">R120</div></div>
+      </div>
+    </div>
+    <p class="services-note">Prices and times shown are estimates and can vary by hair length, texture, and design — final pricing confirmed at booking.</p>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <div>
+      <div class="kicker" style="color:var(--gold);">About Lumière</div>
+      <h2>Twelve years, one location, the same three chairs.</h2>
+      <p>We kept the salon small on purpose. Every stylist here has trained for years, and every booking gets a full, unrushed slot — no double-booked chairs, no reception line.</p>
+      <div class="stats">
+        <div class="stat"><b>12</b><span>years open</span></div>
+        <div class="stat"><b>3</b><span>senior stylists</span></div>
+        <div class="stat"><b>4.9</b><span>average rating</span></div>
+      </div>
+    </div>
+    <div class="hero-art" style="border-color: rgba(250,246,241,0.2);">
+      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="20" y="20" width="160" height="160" stroke="#B8935A" stroke-width="1.2"/>
+        <line x1="20" y1="100" x2="180" y2="100" stroke="#B8935A" stroke-width="1"/>
+        <line x1="100" y1="20" x2="100" y2="180" stroke="#B8935A" stroke-width="1"/>
+        <circle cx="100" cy="100" r="36" stroke="#FAF6F1" stroke-width="1.2"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Reviews</div>
+      <h2>What regulars say.</h2>
+    </div>
+    <div class="quotes">
+      <div class="quote">
+        <p>"First place that's ever gotten my color right on the first try."</p>
+        <cite>— Naledi M.</cite>
+      </div>
+      <div class="quote">
+        <p>"Booked a 6pm cut and never felt like they were watching the clock."</p>
+        <cite>— Josh T.</cite>
+      </div>
+      <div class="quote">
+        <p>"My stylist actually remembers what we talked about last time."</p>
+        <cite>— Priya R.</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="booking" id="book">
+  <div class="wrap">
+    <div>
+      <div class="kicker">Book a chair</div>
+      <h2>Tell us what you're after.</h2>
+      <p>Send this and we'll confirm your slot by email within a day. For same-day requests, call the salon directly.</p>
+      <p class="fine" style="margin-top:28px;">123 High Street, City Center<br>Tue–Sat, 9am–7pm<br>(079) 010-2938</p>
+    </div>
+    <form onsubmit="event.preventDefault(); alert('Thanks — replace this with your real booking handler.');">
+      <div class="form-row">
+        <div>
+          <label for="name">Name</label>
+          <input id="name" type="text" required>
+        </div>
+        <div>
+          <label for="phone">Phone</label>
+          <input id="phone" type="tel" required>
+        </div>
+      </div>
+      <div>
+        <label for="service">Service</label>
+        <select id="service">
+          <optgroup label="Hair Services">
+            <option>Knotless Braids</option>
+            <option>Box Braids</option>
+            <option>Cornrows</option>
+            <option>Tribal Braids</option>
+            <option>Fulani Braids</option>
+            <option>Passion Twists</option>
+            <option>Faux Locs</option>
+            <option>Soft Locs</option>
+            <option>Crochet Braids</option>
+            <option>Wig Installation</option>
+            <option>Wig Customisation</option>
+            <option>Weaves &amp; Sew-Ins</option>
+            <option>Natural Hair Styling</option>
+            <option>Hair Treatment</option>
+            <option>Blow-Dry &amp; Styling</option>
+          </optgroup>
+          <optgroup label="Beauty Services">
+            <option>Manicure</option>
+            <option>Gel Manicure</option>
+            <option>Pedicure</option>
+            <option>Gel Pedicure</option>
+            <option>Acrylic Nails</option>
+            <option>Nail Art</option>
+            <option>Eyelash Extensions</option>
+            <option>Lash Refills</option>
+            <option>Eyebrow Shaping</option>
+            <option>Eyebrow Tinting</option>
+          </optgroup>
+          <optgroup label="Spa &amp; Beauty">
+            <option>Facial</option>
+            <option>Deep Cleansing Facial</option>
+            <option>Full-Body Massage</option>
+            <option>Back &amp; Shoulder Massage</option>
+            <option>Relaxation Massage</option>
+            <option>Waxing</option>
+            <option>Body Scrub</option>
+          </optgroup>
+          <optgroup label="Special Occasion">
+            <option>Bridal Hair</option>
+            <option>Bridal Makeup</option>
+            <option>Bridesmaid Styling</option>
+            <option>Birthday / Event Glam</option>
+            <option>Photoshoot Styling</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="form-row">
+        <div>
+          <label for="date">Preferred date</label>
+          <input id="date" type="date">
+        </div>
+        <div>
+          <label for="time">Preferred time</label>
+          <input id="time" type="time">
+        </div>
+      </div>
+      <div>
+        <label for="notes">Notes (optional)</label>
+        <textarea id="notes" rows="3"></textarea>
+      </div>
+      <button class="submit-btn" type="submit">Request appointment</button>
+      <p class="form-note">This form doesn't send email on its own — see the notes below for how to connect it in WordPress.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand" style="font-size:1.1rem;">Lumière</div>
+    <div class="cols">
+      <div>Tue–Sat, 9am–7pm</div>
+      <div>(555) 010-2938</div>
+      <div>hello@lumieresalon.com</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
